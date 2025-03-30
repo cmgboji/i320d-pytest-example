@@ -16,5 +16,15 @@ def test_fix_phone_num():
   assert fix_phone_num("3216543333") == '(321) 654 3333'
 
 def test_error_phone_nums():
-    assert fix_phone_num('555-442-98761') == '(555) 442 9876'
-    assert fix_phone_num('(321) 654 3333') == '(321) 654 3333'
+  assert fix_phone_num('555-442-98761') == '(555) 442 9876'
+  assert fix_phone_num('(321) 654 3333') == '(321) 654 3333'
+    
+def test_value_error_check():
+    phone_number = fix_phone_num('51')
+    if len(phone_number) != 10:
+        raise ValueError("Invalid phone number length")
+
+def test_not_all_digits():
+    phone_number = fix_phone_num("bjjlnvxyi")
+    if not phone_number.isdigit():
+        raise ValueError("Can only include numbers")
